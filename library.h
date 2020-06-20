@@ -3,18 +3,14 @@
 
 #include <stdio.h>
 
-struct PointerToNameDictionary *PointerToNameDictionary_new(void* k, const char v[]) {
+struct PointerToNameDictionary *PointerToNameDictionary(void* k, const char v[]) {
 	struct PointerToNameDictionary* next = NULL;
 
 	const void* key = k;
 	const char* value = v;
 };
 
-void PointerToNameDictionary_del(struct PointerToNameDictionary* p) {
-
-};
-
-struct PointerToNameNames *PointerToNameNames_new(const char n[]) {
+struct PointerToNameNames *PointerToNameNames(const char n[]) {
 	struct PointerToNameDictionary* next = NULL;
 
 	const char* name = n;

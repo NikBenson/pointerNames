@@ -3,11 +3,11 @@
 #include <stdio.h>
 
 struct PointerToNameDictionary* pointerToNameDictionary = NULL;
-struct PointerToNameNames* pointerToNameNames = {"test"};
+struct PointerToNameNames* pointerToNameNames = {(struct PointerToNameNames *) &"test"};
 
 const char *getName(void* ptr) {
 	if(pointerToNameDictionary == NULL) {
-		pointerToNameDictionary = PointerToNameDictionary_new(ptr, pointerToNameNames->name);
+		pointerToNameDictionary = PointerToNameDictionary(ptr, pointerToNameNames->name);
 		pointerToNameNames = pointerToNameNames->next;
 		return pointerToNameDictionary->value;
 	}
@@ -20,7 +20,7 @@ const char *getName(void* ptr) {
 		dict = dict->next;
 	}
 
-	dict->next = PointerToNameDictionary_new(ptr, pointerToNameNames->name);
+	dict->next = PointerToNameDictionary(ptr, pointerToNameNames->name);
 	pointerToNameNames = pointerToNameNames->next;
 
 	return dict->next->value;
