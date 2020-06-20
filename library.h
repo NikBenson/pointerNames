@@ -1,0 +1,6 @@
+#ifndef POINTERNAMES_LIBRARY_H
+#define POINTERNAMES_LIBRARY_H
+
+void hello(void);
+
+#endif //POINTERNAMES_LIBRARY_H
