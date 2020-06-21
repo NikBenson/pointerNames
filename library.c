@@ -28,7 +28,7 @@ struct PointerToNameDictionary* pointerToNameDictionary = NULL;
 struct PointerToNameNames* pointerToNameNames = NULL;
 
 char *getName(void* ptr) {
-	if(pointerToNameNames == NULL) pointerToNames();
+	if(pointerToNameNames == NULL) defaultPointerToNames();
 	if(pointerToNameDictionary == NULL) {
 		pointerToNameDictionary = PointerToNameDictionary(ptr, pointerToNameNames->name);
 		pointerToNameNames = pointerToNameNames->next;
@@ -50,114 +50,19 @@ char *getName(void* ptr) {
 }
 
 
-void pointerToNames(char names[10][100] = {
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test",
-		"test"
-}) {
-	struct PointerToNameNames* next = PointerToNameNames(NULL);
+void pointerToNames(char names[][10]) {
+	struct PointerToNameNames* next = {NULL, NULL};
 	pointerToNameNames = next;
-	foreach(char name[10], names) {
-		next->name = name;
-		next->next = PointerToNameNames(NULL);
+	foreach(char* name, names) {
+		next->name = (PointerToNameNames){{NULL, NULL}, name};
 		next = next->next;
 	}
 	next->next = NULL;
 };
+
+void defaultPointerToNames() {
+	pointerToNames((char[][10]){
+		"Hello",
+		"Test"
+	});
+}
