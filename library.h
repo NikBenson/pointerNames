@@ -3,9 +3,9 @@
 
 #include <stdio.h>
 
-struct PointerToNameDictionary *PointerToNameDictionary(void* k, char v[]);
+struct PointerToNameDictionary *PointerToNameDictionary(void* k, char v[10]);
 
-struct PointerToNameNames *PointerToNameNames(char n[]);
+struct PointerToNameNames *PointerToNameNames(char n[10]);
 
 char* getName(void* ptr);
 

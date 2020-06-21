@@ -10,13 +10,13 @@
         keep = !keep, count++) \
       for(item = (array) + count; keep; keep = !keep)
 
-struct PointerToNameNames *PointerToNameNames(char n[]) {
+struct PointerToNameNames *PointerToNameNames(char n[10]) {
 	struct PointerToNameDictionary* next = NULL;
 
 	char* name = n;
 };
 
-struct PointerToNameDictionary *PointerToNameDictionary(void *k, char v[]) {
+struct PointerToNameDictionary *PointerToNameDictionary(void *k, char v[10]) {
 	struct PointerToNameDictionary* next = NULL;
 
 	void* key = k;
