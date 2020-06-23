@@ -41,21 +41,20 @@ const char *getName(void* ptr) {
 }
 
 
-void pointerToNames(char* names[]) {
-	/*struct Names* next = {" ", NULL};
+void pointerToNames(const char names[][10]) {
+	struct Names* next = {" ", NULL};
 	pointerToNameNames = next;
+
+	printf("%d\n", sizeof(names));
 
 	foreach(const char* name, names) {
 		next->name = name;
 		next = next->next;
-	}*/
-
-	struct Names* temp  = {"Hallo", NULL};
-	pointerToNameNames = temp;
+	}
 };
 
 void defaultPointerToNames() {
-	pointerToNames((char*[]){
+	pointerToNames( (const char [][10]) {
 			"Angelo",
 			"Chris",
 			"Skyla",
@@ -175,7 +174,7 @@ int main() {
 
 	defaultPointerToNames();
 
-	printf("%c", pointerToNameNames->name);
+	printf("%s\n", pointerToNameNames->name);
 
 	int i = 5;
 

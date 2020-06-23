@@ -21,7 +21,7 @@ typedef struct Dictionary {
 
 const char* getName(void* ptr);
 
-void pointerToNames(char* names[]);
+void pointerToNames(const char [][10]);
 void defaultPointerToNames();
 
 
