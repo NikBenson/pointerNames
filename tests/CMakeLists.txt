@@ -4,7 +4,7 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../src)
 # CHECK_INSTALL_DIR variable must be set to the install
 # location of Check. For example, on Windows, this may
 # be: C:/Program Files/check
-set(CHECK_INSTALL_DIR "C://Users/NikBe/Downloads/check-0.15.0")
+set(CHECK_DIR "C://Users/NikBe/Downloads/check-0.15.0")
 
 find_package(Check REQUIRED)
 include_directories(${CHECK_INCLUDE_DIRS})
