@@ -2,7 +2,7 @@
 
 #include <stdio.h>
 
-#define foreach(item, array) \
+/*#define foreach(item, array) \
     for(int keep = 1, \
             count = 0,\
             size = sizeof (array) / sizeof *(array); \
@@ -10,23 +10,32 @@
         keep = !keep, count++) \
       for(item = (array) + count; keep; keep = !keep)
 
-struct Dictionary* pointerToNameDictionary;
-struct Names* pointerToNameNames;
+typedef struct PointerToNameNames *PointerToNameNames(char n[10]) {
+	struct PointerToNameDictionary* next = NULL;
 
-const char *getName(void* ptr) {
+	char* name = n;
+};
+
+typedef struct PointerToNameDictionary *PointerToNameDictionary(void *k, char v[10]) {
+	struct PointerToNameDictionary* next = NULL;
+
+	void* key = k;
+	char* value = v;
+};
+
+
+struct PointerToNameDictionary* pointerToNameDictionary;
+struct PointerToNameNames* pointerToNameNames;
+
+char *getName(void* ptr) {
 	if(pointerToNameNames == NULL) defaultPointerToNames();
 	if(pointerToNameDictionary == NULL) {
-		pointerToNameDictionary = (Dictionary){ptr, pointerToNameNames->name, pointerToNameNames->name};
+		pointerToNameDictionary = PointerToNameDictionary(ptr, pointerToNameNames->name);
 		pointerToNameNames = pointerToNameNames->next;
-
-		printf("%p\n", pointerToNameNames->next);
-
-		const char* temp = pointerToNameDictionary->value;
-
-		return temp;
+		return pointerToNameDictionary->value;
 	}
 
-	struct Dictionary* dict = pointerToNameDictionary;
+	struct PointerToNameDictionary* dict = pointerToNameDictionary;
 
 	if(dict->key == ptr) return dict->value;
 	while(dict->next != NULL) {
@@ -34,43 +43,32 @@ const char *getName(void* ptr) {
 		dict = dict->next;
 	}
 
-	dict->next = (Dictionary){ptr, pointerToNameNames->name, NULL};
+	dict->next = PointerToNameDictionary(ptr, pointerToNameNames->name);
 	pointerToNameNames = pointerToNameNames->next;
 
 	return dict->next->value;
 }
 
 
-void pointerToNames(char* names[]) {
-	/*struct Names* next = {" ", NULL};
+void pointerToNames(char names[][10]) {
+	struct PointerToNameNames* next = {NULL, NULL};
 	pointerToNameNames = next;
-
-	foreach(const char* name, names) {
-		next->name = name;
+	foreach(char* name, names) {
+		next->name = (PointerToNameNames){{NULL, NULL}, name};
 		next = next->next;
-	}*/
-
-	struct Names* temp  = {"Hallo", NULL};
-	pointerToNameNames = temp;
+	}
+	next->next = NULL;
 };
 
 void defaultPointerToNames() {
-	pointerToNames((char*[]){
-		"Joseph",
+	pointerToNames((char[][10]){
+		"Hello",
 		"Test"
 	});
-}
+}*/
 
 int main() {
 	printf("working!\n");
-
-	defaultPointerToNames();
-
-	printf("%c", pointerToNameNames->name);
-
-	int i = 5;
-
-	//printf("%s\n", getName(&i));
 
 	return 0;
 }
