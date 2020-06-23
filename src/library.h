@@ -1,15 +1,30 @@
 #ifndef POINTERNAMES_LIBRARY_H
 #define POINTERNAMES_LIBRARY_H
 
-/*#include <stdio.h>
+#include <stdio.h>
 
-typedef struct PointerToNameDictionary;
+typedef struct PointerToNameDictionary *Dictionary;
 
-typedef struct PointerToNameNames;
+typedef struct Names {
+	const char* name;
+	struct PointerToNameDictionary* next;
 
-char* getName(void* ptr);
 
-void pointerToNames(char names[][10]);
-void defaultPointerToNames();*/
+};
+
+typedef struct Dictionary {
+	void* key;
+	const char* value;
+
+	struct Dictionary* next;
+};
+
+const char* getName(void* ptr);
+
+void pointerToNames(char* names[]);
+void defaultPointerToNames();
+
+
+
 
 #endif //POINTERNAMES_LIBRARY_H
