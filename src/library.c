@@ -2,7 +2,7 @@
 
 #include <stdio.h>
 
-#define foreach(item, array) \
+/*#define foreach(item, array) \
     for(int keep = 1, \
             count = 0,\
             size = sizeof (array) / sizeof *(array); \
@@ -10,13 +10,13 @@
         keep = !keep, count++) \
       for(item = (array) + count; keep; keep = !keep)
 
-struct PointerToNameNames *PointerToNameNames(char n[10]) {
+typedef struct PointerToNameNames *PointerToNameNames(char n[10]) {
 	struct PointerToNameDictionary* next = NULL;
 
 	char* name = n;
 };
 
-struct PointerToNameDictionary *PointerToNameDictionary(void *k, char v[10]) {
+typedef struct PointerToNameDictionary *PointerToNameDictionary(void *k, char v[10]) {
 	struct PointerToNameDictionary* next = NULL;
 
 	void* key = k;
@@ -24,8 +24,8 @@ struct PointerToNameDictionary *PointerToNameDictionary(void *k, char v[10]) {
 };
 
 
-struct PointerToNameDictionary* pointerToNameDictionary = NULL;
-struct PointerToNameNames* pointerToNameNames = NULL;
+struct PointerToNameDictionary* pointerToNameDictionary;
+struct PointerToNameNames* pointerToNameNames;
 
 char *getName(void* ptr) {
 	if(pointerToNameNames == NULL) defaultPointerToNames();
@@ -65,4 +65,4 @@ void defaultPointerToNames() {
 		"Hello",
 		"Test"
 	});
-}
+}*/
