@@ -3,13 +3,13 @@
 
 #include <stdio.h>
 
-/*typedef struct PointerToNameDictionary;
+typedef struct PointerToNameDictionary;
 
 typedef struct PointerToNameNames;
 
 char* getName(void* ptr);
 
 void pointerToNames(char names[][10]);
-void defaultPointerToNames();*/
+void defaultPointerToNames();
 
 #endif //POINTERNAMES_LIBRARY_H
