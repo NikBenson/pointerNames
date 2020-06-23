@@ -1,3 +1,0 @@
-check_convert 0 0
----
-check_convert
