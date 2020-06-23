@@ -12,7 +12,7 @@ START_TEST(test_convert)
 {
 	//int* test = 5;
 
-	//char name[10] = "test";
+	char name[10] = "test";
 
 	//pointerToNames((char[][10]){name});
 

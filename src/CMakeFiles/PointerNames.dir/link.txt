@@ -1,0 +1,2 @@
+/usr/bin/ar qc libPointerNames.a  CMakeFiles/PointerNames.dir/library.c.o
+/usr/bin/ranlib libPointerNames.a

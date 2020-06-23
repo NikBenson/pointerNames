@@ -7,9 +7,14 @@ set(HEADERS
 		library.h
 		)
 
+set(MAIN_SOURCES
+		library.c
+		)
+
 add_library(PointerNames STATIC ${LIB_SOURCES} ${HEADERS})
 
-target_link_libraries(PointerNames money)
+add_executable(pointerNames ${HEADERS} ${MAIN_SOURCES})
+target_link_libraries(pointerNames PointerNames)
 
 install(TARGETS PointerNames
 		RUNTIME DESTINATION bin

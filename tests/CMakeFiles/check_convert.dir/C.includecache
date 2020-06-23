@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/nikb/CLionProjects/pointerNames/src/library.h
+
+/home/nikb/CLionProjects/pointerNames/tests/check_convert.c
+check.h
+-
+../src/library.h
+/home/nikb/CLionProjects/pointerNames/src/library.h
+

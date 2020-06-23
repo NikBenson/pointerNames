@@ -1,0 +1,19 @@
+Start testing: Jun 23 20:56 CEST
+----------------------------------------------------------
+Unable to find executable: /home/nikb/CLionProjects/pointerNames/tests/check_convert
+1/1 Testing: check_convert
+1/1 Test: check_convert
+Command: ""
+Directory: /home/nikb/CLionProjects/pointerNames
+"check_convert" start time: 
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"check_convert" end time: Jun 23 20:56 CEST
+"check_convert" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Jun 23 20:56 CEST

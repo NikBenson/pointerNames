@@ -4,7 +4,7 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../src)
 # CHECK_INSTALL_DIR variable must be set to the install
 # location of Check. For example, on Windows, this may
 # be: C:/Program Files/check
-set(CHECK_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../check-0.15.0/)
+#set(CHECK_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../check-0.15.0/)
 
 
 LIST(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../cmake/)
@@ -18,4 +18,4 @@ set(TEST_SOURCES
         )
 
 add_executable(check_convert ${TEST_SOURCES})
-target_link_libraries(check_convert convert ${CHECK_LIBRARIES})
+target_link_libraries(check_convert PointerNames ${CHECK_LIBRARIES})
