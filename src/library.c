@@ -13,7 +13,7 @@
 struct Dictionary* pointerToNameDictionary;
 struct Names* pointerToNameNames;
 
-const char *getName(void* ptr) {
+__unused const char *getName(void* ptr) {
 	if(pointerToNameNames == NULL) defaultPointerToNames();
 	if(pointerToNameDictionary == NULL) {
 		pointerToNameDictionary = (Dictionary){ptr, pointerToNameNames->name, pointerToNameNames->name};
