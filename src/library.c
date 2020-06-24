@@ -12,9 +12,8 @@
       for(item = (array) + count; keep; keep = !keep)
 
 
-struct Dictionary* pointerToNameDictionary;
+struct Dictionary* pointerToNamesDictionary;
 struct Names* pointerToNameNames;
-
 
 /**
  * Returns the value according to Dictionary using ptr.
@@ -24,7 +23,7 @@ struct Names* pointerToNameNames;
  */
 const char *getName(void* ptr) {
 	//first entry
-	if(pointerToNameDictionary == NULL) {
+	if(pointerToNamesDictionary == NULL) {
 		//make sure that there is  always a next name
 		if(pointerToNameNames == NULL) {
 			printf("%s\n%s\n", "out of names!", "using default names, maybe not the first time.");
@@ -32,17 +31,17 @@ const char *getName(void* ptr) {
 		}
 
 		//use and remove name, init Dictionary
-		pointerToNameDictionary = &(struct Dictionary){ptr, pointerToNameNames->name, pointerToNameNames->name};
+		pointerToNamesDictionary = &(struct Dictionary){ptr, pointerToNameNames->name, pointerToNameNames->name};
 		pointerToNameNames = pointerToNameNames->next;
 
 		printf("%p\n", pointerToNameNames->next);
 
-		const char* temp = pointerToNameDictionary->value;
+		const char* temp = pointerToNamesDictionary->value;
 		return temp;
 	}
 
 	//search for key in Dictionary
-	struct Dictionary* dict = pointerToNameDictionary;
+	struct Dictionary* dict = pointerToNamesDictionary;
 
 	if(dict->key == ptr) return dict->value;
 	while(dict->next != NULL) {
