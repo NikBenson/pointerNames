@@ -71,7 +71,7 @@ set(CONFIG_HEADER ${CMAKE_CURRENT_BINARY_DIR}/config.h)
 ###############################################################################
 
 ADD_SUBDIRECTORY(src)
-ADD_SUBDIRECTORY(tests)
+#ADD_SUBDIRECTORY(tests)
 
-ENABLE_TESTING()
-ADD_TEST(NAME check_convert COMMAND check_convert)
+#ENABLE_TESTING()
+#ADD_TEST(NAME check_convert COMMAND check_convert)
