@@ -37,7 +37,7 @@ const char* getName(void*);
  * Initialises pointerNames environment with custom names.
  * @param string[] names
  */
-void pointerToNames(const char [][10]);
+void pointerToNames(const char [][10], int length);
 
 /**
  * Initialises pointerNames environment with default names.
