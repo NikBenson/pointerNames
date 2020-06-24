@@ -10,22 +10,37 @@
         keep = !keep, count++) \
       for(item = (array) + count; keep; keep = !keep)
 
+
 struct Dictionary* pointerToNameDictionary;
 struct Names* pointerToNameNames;
 
-__unused const char *getName(void* ptr) {
-	if(pointerToNameNames == NULL) defaultPointerToNames();
+
+/**
+ * Returns the value according to Dictionary using ptr.
+ * Updates Dictionary if necessary.
+ * @param pointer ptr
+ * @return string name
+ */
+const char *getName(void* ptr) {
+	//first entry
 	if(pointerToNameDictionary == NULL) {
-		pointerToNameDictionary = (Dictionary){ptr, pointerToNameNames->name, pointerToNameNames->name};
+		//make sure that there is  always a next name
+		if(pointerToNameNames == NULL) {
+			printf("%s\n%s\n", "out of names!", "using default names, maybe not the first time.");
+			defaultPointerToNames();
+		}
+
+		//use and remove name, init Dictionary
+		pointerToNameDictionary = &(struct Dictionary){ptr, pointerToNameNames->name, pointerToNameNames->name};
 		pointerToNameNames = pointerToNameNames->next;
 
 		printf("%p\n", pointerToNameNames->next);
 
 		const char* temp = pointerToNameDictionary->value;
-
 		return temp;
 	}
 
+	//search for key in Dictionary
 	struct Dictionary* dict = pointerToNameDictionary;
 
 	if(dict->key == ptr) return dict->value;
@@ -34,13 +49,23 @@ __unused const char *getName(void* ptr) {
 		dict = dict->next;
 	}
 
-	dict->next = (Dictionary){ptr, pointerToNameNames->name, NULL};
+	//make sure that there is  always a next name
+	if(pointerToNameNames == NULL) {
+		printf("%s\n%s\n", "out of names!", "using default names, maybe not the first time.");
+		defaultPointerToNames();
+	}
+
+	//use and remove next name
+	dict->next = &(struct Dictionary){ptr, pointerToNameNames->name, NULL};
 	pointerToNameNames = pointerToNameNames->next;
 
 	return dict->next->value;
 }
 
-
+/**
+ * Initialises pointerNames environment with custom names.
+ * @param string[] names
+ */
 void pointerToNames(const char names[][10]) {
 	struct Names* next = {" ", NULL};
 	pointerToNameNames = next;
@@ -53,6 +78,9 @@ void pointerToNames(const char names[][10]) {
 	}
 };
 
+/**
+ * Initialises pointerNames environment with default names.
+ */
 void defaultPointerToNames() {
 	pointerToNames( (const char [][10]) {
 			"Angelo",
@@ -169,6 +197,7 @@ void defaultPointerToNames() {
 	});
 }
 
+//Testing purpose only, will be replaced with check!
 int main() {
 	printf("working!\n");
 
