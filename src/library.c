@@ -2,6 +2,7 @@
 
 #include <stdio.h>
 
+#define NULL (void*)0
 #define foreach(item, array) \
     for(int keep = 1, \
             count = 0,\
@@ -67,7 +68,7 @@ const char *getName(void* ptr) {
  * @param string[] names
  */
 void pointerToNames(const char names[][10]) {
-	struct Names* next = {" ", NULL};
+	struct Names* next = &(struct Names){" ", NULL};
 	pointerToNameNames = next;
 
 	printf("%d\n", sizeof(names));
