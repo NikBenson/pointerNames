@@ -3,13 +3,6 @@
 #include <stdio.h>
 
 #define NULL (void*)0
-#define foreach(item, array) \
-    for(int keep = 1, \
-            count = 0,\
-            size = sizeof (array) / sizeof *(array); \
-        keep && count != size; \
-        keep = !keep, count++) \
-      for(item = (array) + count; keep; keep = !keep)
 
 
 struct Dictionary* pointerToNamesDictionary;
@@ -31,10 +24,10 @@ const char *getName(void* ptr) {
 		}
 
 		//use and remove name, init Dictionary
-		pointerToNamesDictionary = &(struct Dictionary){ptr, pointerToNameNames->name, pointerToNameNames->name};
+		pointerToNamesDictionary = &(struct Dictionary){ptr, pointerToNameNames->name, NULL};
 		pointerToNameNames = pointerToNameNames->next;
 
-		printf("%p\n", pointerToNameNames->next);
+		//printf("%p\n", pointerToNameNames->next);
 
 		const char* temp = pointerToNamesDictionary->value;
 		return temp;
@@ -71,7 +64,7 @@ void pointerToNames(const char names[][10], int length) {
 	struct Names** name = &pointerToNameNames;
 
 	for(unsigned int i = 1; i < length; i++) {
-		printf("%s\n", names[i]);
+		//printf("%s\n", names[i]);
 		struct Names* temp = &(struct Names){names[i], NULL};
 		(*name)->next = temp;
 		name = &temp;
@@ -208,8 +201,10 @@ int main() {
 	printf("%s\n", pointerToNameNames->name);
 
 	int i = 5;
+	int j = 10;
 
-	//printf("%s\n", getName(&i));
+	printf("%s\n", getName(&i));
+	//printf("%s\n", getName(&j));
 
 	return 0;
 }
