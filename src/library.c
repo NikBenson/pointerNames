@@ -66,16 +66,18 @@ const char *getName(void* ptr) {
  * Initialises pointerNames environment with custom names.
  * @param string[] names
  */
-void pointerToNames(const char names[][10]) {
-	struct Names* next = &(struct Names){" ", NULL};
-	pointerToNameNames = next;
+void pointerToNames(const char names[][10], int length) {
+	pointerToNameNames = &(struct Names){names[0], NULL};
+	struct Names** name = &pointerToNameNames;
 
-	printf("%d\n", sizeof(names));
-
-	foreach(const char* name, names) {
-		next->name = name;
-		next = next->next;
+	for(unsigned int i = 1; i < length; i++) {
+		printf("%s\n", names[i]);
+		struct Names* temp = &(struct Names){names[i], NULL};
+		(*name)->next = temp;
+		name = &temp;
 	}
+
+	(*name)->next = NULL;
 };
 
 /**
@@ -194,7 +196,7 @@ void defaultPointerToNames() {
 			"DJGrooves",
 			"Louis",
 			"Marge",
-	});
+	}, 4);
 }
 
 //Testing purpose only, will be replaced with check!
