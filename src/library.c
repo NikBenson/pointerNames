@@ -71,7 +71,7 @@ void pointerToNames(const char names[][10], int length) {
 	}
 
 	(*name)->next = NULL;
-};
+}
 
 /**
  * Initialises pointerNames environment with default names.
