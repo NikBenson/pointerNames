@@ -6,8 +6,8 @@ There is no release by now.
 
 | Version | Supported          |
 | ------- | ------------------ |
-|  dev    | :x:.               |
+|  x.x.x  | :x:               |
 
 ## Reporting a Vulnerability
 
-Just don't. It is a dev tool. What would be insecure?
+As for every bug create an issue.
