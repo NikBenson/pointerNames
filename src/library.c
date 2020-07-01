@@ -25,23 +25,21 @@ const char *getName(void* ptr) {
 		}
 
 		//use and remove name, init Dictionary
-		pointerToNamesDictionary = &(struct Dictionary){.key = ptr, .value = pointerToNameNames->name, .next = NULL};
+		pointerToNamesDictionary = malloc(sizeof(struct Dictionary));
+		pointerToNamesDictionary->key = ptr;
+		pointerToNamesDictionary->value = pointerToNameNames->name;
 		pointerToNameNames = pointerToNameNames->next;
 
-		//printf("%p\n", pointerToNameNames->next);
-
-		const char* temp = pointerToNamesDictionary->value;
-		return temp;
+		return pointerToNamesDictionary->value;
 	}
 
 	//search for key in Dictionary
 	struct Dictionary* dict = pointerToNamesDictionary;
 
-	if(dict->key == ptr) return dict->value;
-	/*while(dict->next != NULL) {
+	do {
 		if(dict->key == ptr) return dict->value;
 		dict = dict->next;
-	}*/
+	} while(dict != NULL);
 
 	//make sure that there is  always a next name
 	if(pointerToNameNames == NULL) {
@@ -50,10 +48,14 @@ const char *getName(void* ptr) {
 	}
 
 	//use and remove next name
-	dict->next = &(struct Dictionary){ptr, pointerToNameNames->name, NULL};
+	struct Dictionary* temp = pointerToNamesDictionary;
+	pointerToNamesDictionary = malloc(sizeof(struct Dictionary));
+	pointerToNamesDictionary->key = ptr;
+	pointerToNamesDictionary->value = pointerToNameNames->name;
 	pointerToNameNames = pointerToNameNames->next;
+	pointerToNamesDictionary->next = temp;
 
-	return dict->next->value;
+	return pointerToNamesDictionary->value;
 }
 
 /**
@@ -187,7 +189,7 @@ void defaultPointerToNames() {
 			"DJGrooves",
 			"Louis",
 			"Marge",
-	}, 4);
+	}, 110);
 }
 
 //Testing purpose only, will be replaced with check!
@@ -196,14 +198,17 @@ int main() {
 
 	defaultPointerToNames();
 
-	printf("%s\n", pointerToNameNames->name);
-
 	int i = 5;
 	int j = 10;
+	int k = 15;
 
 	printf("%s\n", getName(&i));
 	printf("%s\n", getName(&i));
 	printf("%s\n", getName(&j));
-
+	printf("%s\n", getName(&i));
+	printf("%s\n", getName(&j));
+	printf("%s\n", getName(&k));
+	printf("%s\n", getName(&i));
+	printf("%s\n", getName(&k));
 	return 0;
 }
