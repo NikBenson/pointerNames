@@ -4,7 +4,7 @@ set(LIB_SOURCES
 
 set(HEADERS
 		${CONFIG_HEADER}
-		library.h
+		PointerNames.h
 		)
 
 set(MAIN_SOURCES

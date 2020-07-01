@@ -1,9 +1,53 @@
-#include "library.h"
+#ifndef POINTERNAMES_POINTERNAMES_H
+#define POINTERNAMES_POINTERNAMES_H
 
-#include <stdio.h>
 #include <malloc.h>
 
 #define NULL (void*)0
+
+/**
+ * @struct Names in linked list
+ * @var string name value of this node
+ * @var Names next child node of linked list
+ */
+typedef struct Names {
+	const char* name;
+
+	struct Names* next;
+};
+
+/**
+ * @struct Dictionary of pointers to names in linked list
+ * @var pointer key linked by value
+ * @var string value linked by key
+ * @var Dictionary next child node of linked list
+ */
+typedef struct Dictionary {
+	void* key;
+	const char* value;
+
+	struct Dictionary* next;
+};
+
+/**
+ * Returns the value according to Dictionary using ptr.
+ * Updates Dictionary if necessary.
+ * @param pointer ptr
+ * @return string name
+ */
+const char* getName(void*);
+
+/**
+ * Initialises pointerNames environment with custom names.
+ * @param string[] names
+ */
+void pointerToNames(const char [][10], int length);
+
+/**
+ * Initialises pointerNames environment with default names.
+ */
+void defaultPointerToNames();
+
 
 
 struct Dictionary* pointerToNamesDictionary;
@@ -20,7 +64,6 @@ const char *getName(void* ptr) {
 	if(pointerToNamesDictionary == NULL) {
 		//make sure that there is  always a next name
 		if(pointerToNameNames == NULL) {
-			printf("%s\n%s\n", "out of names!", "using default names, maybe not the first time.");
 			defaultPointerToNames();
 		}
 
@@ -43,7 +86,6 @@ const char *getName(void* ptr) {
 
 	//make sure that there is  always a next name
 	if(pointerToNameNames == NULL) {
-		printf("%s\n%s\n", "out of names!", "using default names, maybe not the first time.");
 		defaultPointerToNames();
 	}
 
@@ -191,3 +233,4 @@ void defaultPointerToNames() {
 			"Marge",
 	}, 110);
 }
+#endif //POINTERNAMES_POINTERNAMES_H
