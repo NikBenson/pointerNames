@@ -1,6 +1,7 @@
 #include "library.h"
 
 #include <stdio.h>
+#include <malloc.h>
 
 #define NULL (void*)0
 
@@ -24,7 +25,7 @@ const char *getName(void* ptr) {
 		}
 
 		//use and remove name, init Dictionary
-		pointerToNamesDictionary = &(struct Dictionary){ptr, pointerToNameNames->name, NULL};
+		pointerToNamesDictionary = &(struct Dictionary){.key = ptr, .value = pointerToNameNames->name, .next = NULL};
 		pointerToNameNames = pointerToNameNames->next;
 
 		//printf("%p\n", pointerToNameNames->next);
@@ -37,10 +38,10 @@ const char *getName(void* ptr) {
 	struct Dictionary* dict = pointerToNamesDictionary;
 
 	if(dict->key == ptr) return dict->value;
-	while(dict->next != NULL) {
+	/*while(dict->next != NULL) {
 		if(dict->key == ptr) return dict->value;
 		dict = dict->next;
-	}
+	}*/
 
 	//make sure that there is  always a next name
 	if(pointerToNameNames == NULL) {
@@ -60,17 +61,14 @@ const char *getName(void* ptr) {
  * @param string[] names
  */
 void pointerToNames(const char names[][10], int length) {
-	pointerToNameNames = &(struct Names){names[0], NULL};
-	struct Names** name = &pointerToNameNames;
+	pointerToNameNames = &(struct Names){.name = names[0], .next = NULL};
+	struct Names* name = pointerToNameNames;
 
 	for(unsigned int i = 1; i < length; i++) {
-		//printf("%s\n", names[i]);
-		struct Names* temp = &(struct Names){names[i], NULL};
-		(*name)->next = temp;
-		name = &temp;
+		name->next = malloc(sizeof(struct Names));
+		name->next->name = names[i];
+		name = name->next;
 	}
-
-	(*name)->next = NULL;
 }
 
 /**
@@ -204,7 +202,8 @@ int main() {
 	int j = 10;
 
 	printf("%s\n", getName(&i));
-	//printf("%s\n", getName(&j));
+	printf("%s\n", getName(&i));
+	printf("%s\n", getName(&j));
 
 	return 0;
 }
