@@ -2,7 +2,7 @@
 // Created by NikBe on 23.06.2020.
 //
 #include <check.h>
-#include "../src/library.h"
+#include "../src/PointerNames.h"
 
 int main() {
 	return 0;
