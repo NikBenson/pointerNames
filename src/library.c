@@ -191,24 +191,3 @@ void defaultPointerToNames() {
 			"Marge",
 	}, 110);
 }
-
-//Testing purpose only, will be replaced with check!
-int main() {
-	printf("working!\n");
-
-	defaultPointerToNames();
-
-	int i = 5;
-	int j = 10;
-	int k = 15;
-
-	printf("%s\n", getName(&i));
-	printf("%s\n", getName(&i));
-	printf("%s\n", getName(&j));
-	printf("%s\n", getName(&i));
-	printf("%s\n", getName(&j));
-	printf("%s\n", getName(&k));
-	printf("%s\n", getName(&i));
-	printf("%s\n", getName(&k));
-	return 0;
-}
