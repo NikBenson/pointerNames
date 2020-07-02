@@ -10,7 +10,7 @@
  * @var string name value of this node
  * @var PointerNamesNamesList next child node of linked list
  */
-struct PointerNamesNamesList {
+typedef struct PointerNamesNamesList {
 	const char* name;
 
 	struct PointerNamesNamesList* next;
@@ -22,7 +22,7 @@ struct PointerNamesNamesList {
  * @var string value linked by key
  * @var PointerToNamesDictionary next child node of linked list
  */
-struct PointerToNamesDictionary {
+typedef struct PointerToNamesDictionary {
 	void* key;
 	const char* value;
 
@@ -41,7 +41,7 @@ const char* getPointerName(void*);
  * Initialises pointerNames environment with custom names.
  * @param string[] names
  */
-void setPointerToNamesList(const char names[][16] = (char[][16]) {
+void setPointerToNamesList(const char names[][16]/* = (char[][16]) {
 		"Angelo",
 		"Chris",
 		"Skyla",
@@ -153,7 +153,7 @@ void setPointerToNamesList(const char names[][16] = (char[][16]) {
 		"DJGrooves",
 		"Louis",
 		"Marge",
-}, int length = 110);
+}*/, int length /*= 110*/);
 
 struct PointerToNamesDictionary* pointerToNamesDictionary;
 struct PointerNamesNamesList* pointerToNameNames;
@@ -169,11 +169,11 @@ const char *getPointerName(void* ptr) {
 	if(pointerToNamesDictionary == NULL) {
 		//make sure that there is  always a next name
 		if(pointerToNameNames == NULL) {
-			setPointerToNamesList();
+			setPointerToNamesList((const char[][16]){"test"}, 1);
 		}
 
 		//use and remove name, init PointerToNamesDictionary
-		pointerToNamesDictionary = (PointerToNamesDictionary*) malloc(sizeof(struct PointerToNamesDictionary));
+		pointerToNamesDictionary = /*(PointerToNamesDictionary*)*/ malloc(sizeof(struct PointerToNamesDictionary));
 		pointerToNamesDictionary->key = ptr;
 		pointerToNamesDictionary->value = pointerToNameNames->name;
 		pointerToNameNames = pointerToNameNames->next;
@@ -191,12 +191,12 @@ const char *getPointerName(void* ptr) {
 
 	//make sure that there is  always a next name
 	if(pointerToNameNames == NULL) {
-		setPointerToNamesList();
+		setPointerToNamesList((const char[][16]){"test"}, 1);
 	}
 
 	//use and remove next name
 	struct PointerToNamesDictionary* temp = pointerToNamesDictionary;
-	pointerToNamesDictionary = (PointerToNamesDictionary*) malloc(sizeof(struct PointerToNamesDictionary));
+	pointerToNamesDictionary = /*(PointerToNamesDictionary*)*/ malloc(sizeof(struct PointerToNamesDictionary));
 	pointerToNamesDictionary->key = ptr;
 	pointerToNamesDictionary->value = pointerToNameNames->name;
 	pointerToNameNames = pointerToNameNames->next;
@@ -210,12 +210,12 @@ const char *getPointerName(void* ptr) {
  * @param string[] names
  */
 void setPointerToNamesList(const char names[][16], int length) {
-	pointerToNameNames = (PointerNamesNamesList*) malloc(sizeof(struct PointerNamesNamesList));
+	pointerToNameNames = /*(PointerNamesNamesList*)*/ malloc(sizeof(struct PointerNamesNamesList));
 	pointerToNameNames->name = names[0];
 	struct PointerNamesNamesList* name = pointerToNameNames;
 
 	for(unsigned int i = 1; i < length; i++) {
-		name->next = (PointerNamesNamesList*) malloc(sizeof(struct PointerNamesNamesList));
+		name->next = /*(PointerNamesNamesList*)*/ malloc(sizeof(struct PointerNamesNamesList));
 		name->next->name = names[i];
 		name = name->next;
 	}
