@@ -1,25 +1,25 @@
-set(LIB_SOURCES
-		library.c
-		)
+message("building ${PROJECT_NAME}")
 
-set(HEADERS
-		${CONFIG_HEADER}
-		PointerNames.h
-		)
+set(SOURCE_FILES PointerNames.h NameLists.h)
 
-set(MAIN_SOURCES
-		library.c
-		)
+add_library(${PROJECT_NAME} STATIC ${SOURCE_FILES})
 
-add_library(PointerNames STATIC ${LIB_SOURCES} ${HEADERS})
+target_include_directories(${PROJECT_NAME} PUBLIC
+		$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+		$<INSTALL_INTERFACE:include>
+		PRIVATE src)
 
-add_executable(pointerNames ${HEADERS} ${MAIN_SOURCES})
-target_link_libraries(pointerNames PointerNames)
+set_target_properties(${PROJECT_NAME} PROPERTIES
+		LINKER_LANGUAGE C
+		VERSION ${PROJECT_VERSION}
+		SOVERSION 1)
 
-install(TARGETS PointerNames
-		RUNTIME DESTINATION bin
-		LIBRARY DESTINATION lib
-		ARCHIVE DESTINATION lib)
+install(TARGETS ${PROJECT_NAME} EXPORT PointerNamesConfig
+		ARCHIVE  DESTINATION ${CMAKE_INSTALL_LIBDIR}
+		LIBRARY  DESTINATION ${CMAKE_INSTALL_LIBDIR}
+		RUNTIME  DESTINATION ${CMAKE_INSTALL_BINDIR})
+install(DIRECTORY include/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME})
 
-install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/PointerNames.h DESTINATION include)
+install(EXPORT PointerNamesConfig DESTINATION share/PointerNames/cmake)
 
+export(TARGETS ${PROJECT_NAME} FILE PointerNamesConfig.cmake)

@@ -13,7 +13,6 @@ if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
 	set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Debug" "Release" "MinSizeRel" "RelWithDebInfo")
 endif()
 
-if(false)
 ###############################################################################
 include(CheckCSourceCompiles)
 include(CheckCSourceRuns)
@@ -23,6 +22,9 @@ include(CheckIncludeFiles)
 include(CheckLibraryExists)
 include(CheckSymbolExists)
 include(CheckTypeSize)
+include(FindPkgConfig)
+
+pkg_check_modules(LIBCHECK REQUIRED check)
 
 ###############################################################################
 # Check headers
@@ -78,52 +80,9 @@ set(CONFIG_HEADER ${CMAKE_CURRENT_BINARY_DIR}/config.h)
 ###############################################################################
 
 ADD_SUBDIRECTORY(src)
-#ADD_SUBDIRECTORY(tests)
 
-#ENABLE_TESTING()
-#ADD_TEST(NAME check_convert COMMAND check_convert)
+#if(CMAKE_BUILD_TYPE MATCHES DEBUG)
+ADD_SUBDIRECTORY(tests)
+ENABLE_TESTING()
+ADD_TEST(NAME check_convert COMMAND check_convert)
 #endif()
-
-include(GNUInstallDirs)
-
-add_library(PointerNames SHARED src/PointerNames.h src/library.c)
-set_target_properties(PointerNames PROPERTIES
-		VERSION ${PROJECT_VERSION}
-		SOVERSION 1
-		PUBLIC_HEADER api/PointerNames.h)
-install(TARGETS PointerNames
-		LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-		PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
-configure_file(cmake/PointerNames.pc.in PointerNames.pc @ONLY)
-install(FILES ${CMAKE_BINARY_DIR}/PointerNames.pc DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/pkgconfig)
-
-#install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/PointerNames.h DESTINATION include)
-
-endif()
-
-include(GNUInstallDirs)
-
-# Find source files
-set(SOURCE_FILES src/PointerNames.h src/NameLists.h)
-
-add_library(${PROJECT_NAME} SHARED ${SOURCE_FILES})
-
-target_include_directories(${PROJECT_NAME} PUBLIC
-		$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-		$<INSTALL_INTERFACE:include>
-		PRIVATE src)
-
-set_target_properties(${PROJECT_NAME} PROPERTIES
-		LINKER_LANGUAGE C
-		VERSION ${PROJECT_VERSION}
-		SOVERSION 1)
-
-install(TARGETS ${PROJECT_NAME} EXPORT PointerNamesConfig
-		ARCHIVE  DESTINATION ${CMAKE_INSTALL_LIBDIR}
-		LIBRARY  DESTINATION ${CMAKE_INSTALL_LIBDIR}
-		RUNTIME  DESTINATION ${CMAKE_INSTALL_BINDIR})
-install(DIRECTORY include/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME})
-
-install(EXPORT PointerNamesConfig DESTINATION share/PointerNames/cmake)
-
-export(TARGETS ${PROJECT_NAME} FILE PointerNamesConfig.cmake)

@@ -1,3 +1,5 @@
+message("testing ${PROJECT_NAME}")
+
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../src)
 
 # If pkg-config is not installed on the system, then the
@@ -18,4 +20,4 @@ set(TEST_SOURCES
         )
 
 add_executable(check_convert ${TEST_SOURCES})
-target_link_libraries(check_convert PointerNames ${CHECK_LIBRARIES})
+target_link_libraries(check_convert PRIVATE ${LIBCHECK_LDFLAGS})
