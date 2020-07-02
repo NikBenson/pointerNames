@@ -104,7 +104,7 @@ endif()
 include(GNUInstallDirs)
 
 # Find source files
-set(SOURCE_FILES src/PointerNames.h)
+set(SOURCE_FILES src/PointerNames.h src/NameLists.h)
 
 add_library(${PROJECT_NAME} SHARED ${SOURCE_FILES})
 
