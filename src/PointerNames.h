@@ -10,7 +10,7 @@
  * @var string name value of this node
  * @var PointerNamesNamesList next child node of linked list
  */
-typedef struct PointerNamesNamesList {
+struct PointerNamesNamesList {
 	const char* name;
 
 	struct PointerNamesNamesList* next;
@@ -22,7 +22,7 @@ typedef struct PointerNamesNamesList {
  * @var string value linked by key
  * @var PointerToNamesDictionary next child node of linked list
  */
-typedef struct PointerToNamesDictionary {
+struct PointerToNamesDictionary {
 	void* key;
 	const char* value;
 

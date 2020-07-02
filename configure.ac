@@ -10,7 +10,7 @@ AC_CONFIG_SRCDIR([src/money.c])
 
 # fairly severe build strictness
 # change foreign to gnu or gnits to comply with gnu standards
-AM_INIT_AUTOMAKE([-Wall -Werror foreign 1.11.2])
+AM_INIT_AUTOMAKE([-Wall -Werror -Wno-extra-portability foreign 1.11.2])
 
 # Checks for programs.
 AC_PROG_CC
@@ -21,9 +21,9 @@ AC_PROG_LIBTOOL
 PKG_CHECK_MODULES([CHECK], [check >= 0.9.6])
 AM_PROG_CC_C_O
 
-AC_CHECK_LIB(m, floor)
-AC_CHECK_LIB(rt, setitimer)
-AC_CHECK_LIB(pthread, pthread_create)
+AC_SEARCH_LIBS(floor, m)
+AC_SEARCH_LIBS(setitimer, rt)
+AC_SEARCH_LIBS(pthread_create, pthread)
 
 # Checks for header files.
 AC_HEADER_STDC

@@ -1,3 +1,5 @@
+message("building ${PROJECT_NAME}")
+
 set(SOURCE_FILES PointerNames.h NameLists.h)
 
 add_library(${PROJECT_NAME} STATIC ${SOURCE_FILES})

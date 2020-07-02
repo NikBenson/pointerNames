@@ -10,12 +10,14 @@ int main() {
 
 START_TEST(test_convert)
 {
-	int* test = 5;
+	int* test = (int *) 5;
 
-	char name[10] = "test";
+	const char name[16] = "test";
 
-	setPointerToNamesList((char[][16]){name}, 1);
+	printf("test\n");
 
-	ck_assert_str_eq(getPointerName(test), name);
+	setPointerToNamesList((const char[][16]){name}, 1);
+
+	ck_assert_str_eq(getPointerName(test), "name");
 }
 END_TEST

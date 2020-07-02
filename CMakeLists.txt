@@ -22,6 +22,9 @@ include(CheckIncludeFiles)
 include(CheckLibraryExists)
 include(CheckSymbolExists)
 include(CheckTypeSize)
+include(FindPkgConfig)
+
+pkg_check_modules(LIBCHECK REQUIRED check)
 
 ###############################################################################
 # Check headers
