@@ -41,14 +41,119 @@ const char* getPointerName(void*);
  * Initialises pointerNames environment with custom names.
  * @param string[] names
  */
-void setPointerToNamesList(const char[][16], int length);
-
-/**
- * Initialises pointerNames environment with default names.
- */
-void defaultPointerToNames();
-
-
+void setPointerToNamesList(const char names[][16] = (char[][16]) {
+		"Angelo",
+		"Chris",
+		"Skyla",
+		"James",
+		"Karlos",
+		"Hans",
+		"Klaus",
+		"Linus",
+		"Frank",
+		"Wolfgang",
+		"Paula",
+		"Kleopatra",
+		"Nikola",
+		"Gustav",
+		"Julius",
+		"Alexander",
+		"Nik",
+		"Fyn",
+		"Markus",
+		"Elisabeth",
+		"Alice",
+		"Ferdinant",
+		"Napoleon",
+		"Thomas",
+		"Torben",
+		"Willhelm",
+		"Vincent",
+		"Markus",
+		"Helmut",
+		"Otto",
+		"Franz",
+		"Cleo",
+		"Sebastian",
+		"Olliver",
+		"Diana",
+		"Maria",
+		"Herkules",
+		"Bilbo",
+		"Merlin",
+		"Frodo",
+		"Smaug",
+		"Shelob",
+		"Gandalf",
+		"Dumbledore",
+		"Samwise",
+		"Peregrin",
+		"Meriadoc",
+		"Sauron",
+		"Saroman",
+		"Hermes",
+		"Loki",
+		"Zeus",
+		"Heracles",
+		"Minos",
+		"Gilgamech",
+		"Jesus",
+		"Charles",
+		"Logan",
+		"Anakin",
+		"Sheev",
+		"Padme",
+		"Yoda",
+		"Chewbacca",
+		"Maurice",
+		"Mario",
+		"Koopa",
+		"Kamek",
+		"Bowser",
+		"Yoshi",
+		"Gumba",
+		"Toad",
+		"Victor",
+		"Tony",
+		"Peach",
+		"Daisy",
+		"Amy",
+		"Rosalina",
+		"Hornet",
+		"Toadette",
+		"Fawfull",
+		"Ray",
+		"Kylo",
+		"Shrek",
+		"Fiona",
+		"Hera",
+		"Rosa",
+		"Ruto",
+		"Ganondorf",
+		"Zelda",
+		"Link",
+		"Mipha",
+		"Pauline",
+		"Zote",
+		"Grimm",
+		"Greta",
+		"Hilda",
+		"Cynthia",
+		"Red",
+		"Blue",
+		"Pennywise",
+		"Phineas",
+		"Ferb",
+		"Candace",
+		"Isabella",
+		"Kirby",
+		"Dedede",
+		"Marx",
+		"Snatcher",
+		"DJGrooves",
+		"Louis",
+		"Marge",
+}, int length = 110);
 
 struct PointerToNamesDictionary* pointerToNamesDictionary;
 struct PointerNamesNamesList* pointerToNameNames;
@@ -64,7 +169,7 @@ const char *getPointerName(void* ptr) {
 	if(pointerToNamesDictionary == NULL) {
 		//make sure that there is  always a next name
 		if(pointerToNameNames == NULL) {
-			defaultPointerToNames();
+			setPointerToNamesList();
 		}
 
 		//use and remove name, init PointerToNamesDictionary
@@ -86,7 +191,7 @@ const char *getPointerName(void* ptr) {
 
 	//make sure that there is  always a next name
 	if(pointerToNameNames == NULL) {
-		defaultPointerToNames();
+		setPointerToNamesList();
 	}
 
 	//use and remove next name
